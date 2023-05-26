@@ -10,14 +10,14 @@ public class Application {
 
         try {
             Class.forName("org.h2.Driver");
-            connection = DriverManager.getConnection("jdbc:h2:~/back-end-examen;INIT=RUNSCRIPT FROM 'create.sql'", "sa", "sa");
-        } catch (Exception var11) {
-            var11.printStackTrace();
+            connection = DriverManager.getConnection("jdbc:h2:~/back-end-examen;INIT=RUNSCRIPT FROM 'create.sql'", "mBasalo", "mBasalo");
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             try {
                 connection.close();
-            } catch (Exception var10) {
-                var10.printStackTrace();
+            } catch (Exception exception) {
+                exception.printStackTrace();
             }
 
         }
