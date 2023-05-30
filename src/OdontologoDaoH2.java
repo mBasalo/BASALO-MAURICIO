@@ -33,7 +33,7 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
 
             connection.commit();
             LOGGER.info("Se ha registrado el odontólogo: " + odontologo);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             LOGGER.error("Error al guardar el odontólogo: " + e.getMessage());
             e.printStackTrace();
             if (connection != null) {
@@ -72,6 +72,7 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
         List<Odontologo> odontologos = new ArrayList<>();
 
         try {
+            //al colocar en el catch especificamente la SQLException, el metodo requiere agregar la ClassNotFoundException, por eso el getConnection() arroja error de compilacion
             connection = H2Connection.getConnection();
             ps = connection.prepareStatement("SELECT * FROM ODONTOLOGOS");
             rs = ps.executeQuery();
@@ -85,6 +86,8 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
         } catch (SQLException e) {
             LOGGER.error("Error al obtener el listado de odontólogos: " + e.getMessage());
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         } finally {
             try {
                 if (rs != null) {

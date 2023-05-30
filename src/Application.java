@@ -10,6 +10,7 @@ public class Application {
 
         try {
             Class.forName("org.h2.Driver");
+            //no hay un archivo create.sql en el proyecto
             connection = DriverManager.getConnection("jdbc:h2:~/back-end-examen;INIT=RUNSCRIPT FROM 'create.sql'", "mBasalo", "mBasalo");
         } catch (Exception e) {
             e.printStackTrace();

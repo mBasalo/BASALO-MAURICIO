@@ -9,6 +9,7 @@ public class H2Connection {
     public H2Connection() {
     }
 
+    //este metodo nunca es llamado, la tabla nunca es creada
     public static void crearTabla() {
         Connection connection = null;
 
